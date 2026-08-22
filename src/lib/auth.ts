@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
 export interface AuthUser {
   id: string;
@@ -102,7 +102,7 @@ export async function getCurrentUser(): Promise<AuthUser> {
     throw new Error('Not authenticated');
   }
 
-  const res = await fetch(`${API_URL}/api/users/me`, {
+  const res = await fetch(`${API_URL}/users/me`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
