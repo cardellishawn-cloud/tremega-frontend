@@ -3,6 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { getCurrentUser, logout } from '../lib/auth';
 import type { AuthUser } from '../lib/auth';
 
+function NavLink({ to, label }: { to: string; label: string }) {
+  return (
+    <a
+      href={to}
+      className="block px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium"
+    >
+      {label}
+    </a>
+  );
+}
+
 export default function Dashboard() {
   const navigate = useNavigate();
   const [user, setUser] = useState<AuthUser | null>(null);
