@@ -1,0 +1,117 @@
+THE RIFT - MIDJOURNEY BATCH PROMPT LIST
+======================================
+25 Card Art Prompts - Copy/Paste Ready
+
+======================================
+STRIKERS (Energy/Melee)
+======================================
+
+1. COMMON - Striker Recruit
+A young energy-wielding warrior in battered sci-fi combat armor, crackling neon-blue plasma fists, dynamic charging pose, gritted teeth, post-battle wear and tear, simple lightweight plating with exposed joints, The Rift aesthetic --ar 2:3 --v 6.1 --style raw --s 250
+
+2. RARE - Striker Vanguard
+Elite melee fighter in angular energy-channeling armor, arms engulfed in swirling cyan plasma gauntlets, mid-strike action pose, motion blur on fists, fractured armor plating with glowing heat vents, sci-fantasy fusion design, rift-touched battlefield background --ar 2:3 --v 6.1 --style raw --s 250
+
+3. EPIC - Striker Stormreaver
+Veteran shock trooper in heavy reinforced exo-armor, twin plasma blades extending from forearms, explosive leap attack pose, electricity arcing through cracked visor, ornate shoulder pauldrons with holographic targeting display, The Rift distortion effects, dramatic rim lighting --ar 2:3 --v 6.1 --style raw --s 250
+
+4. LEGENDARY - Striker Voidbreaker
+Mythic champion in living energy-forged armor, body partially translucent with visible internal plasma flow, devastating ground-pound pose causing shockwave ripple, massive overclocked fist-cannons, floating debris from impact force, legendary hero shot, The Rift energy bleed --ar 2:3 --v 6.1 --style raw --s 300
+
+5. OMEGA - Striker Singularity
+Cosmic entity merged with pure kinetic force, armor shattered and reformed from condensed star matter, reality distortion around clenched fists showing gravitational lensing, transcendent airborne devastation pose, miniature rifts opening behind each strike, god-tier presence, maximum detail, The Rift cataclysm aesthetic --ar 2:3 --v 6.1 --style raw --s 400 --q 2
+
+======================================
+GUARDIANS (Tank/Protector)
+======================================
+
+6. COMMON - Guardian Shieldbearer
+A stalwart defender in bulky scavenged plate armor, oversized riot shield with cracked energy barrier, defensive brace stance absorbing impact, weathered face visible through visor gap, mismatched armor pieces welded together, The Rift border patrol aesthetic --ar 2:3 --v 6.1 --style raw --s 250
+
+7. RARE - Guardian Bulwark
+Elite protector in heavy geometric fortress-armor, hexagonal energy shield projecting translucent force wall, planted firm stance deflecting incoming fire, shield etched with glowing ward-sigils, pauldrons like battlements, sci-fantasy fusion, rift-stabilized zone background --ar 2:3 --v 6.1 --style raw --s 250
+
+8. EPIC - Guardian Aegis Sentinel
+Battle-hardened juggernaut in ornate layered ceramite armor, massive tower-shield with active defensive matrix, shield-bash offensive pose crushing enemy weapon, faceplate projecting tactical hologram, trophy-hooks on belt holding broken blades, The Rift energy absorption visible, dramatic rim lighting --ar 2:3 --v 6.1 --style raw --s 250
+
+9. LEGENDARY - Guardian Unyielding
+Mythic bastion in self-repairing nano-forge armor, domed force bubble protecting allies behind, heroic last-stand pose rooted to blasted ground, shield surface reflecting enemy attacks back, crown-like halo of defensive drones, legendary hero shot, The Rift corruption held at bay --ar 2:3 --v 6.1 --style raw --s 300
+
+10. OMEGA - Guardian Eternity Wall
+Cosmic immovable object in armor forged from collapsed neutron star material, continental-scale barrier of pure will made visible, transcendental defense pose holding back rift cataclysm, infinite regression mirror-shield reflecting multiverse timelines, god-tier presence, maximum detail, The Rift contained by singular determination --ar 2:3 --v 6.1 --style raw --s 400 --q 2
+
+======================================
+SPECTRES (Shadow/Ethereal)
+======================================
+
+11. COMMON - Spectre Shade
+A wraithlike infiltrator in tattered stealth suit held together by shadow-thread, barely visible smoke-trailing silhouette, crouched ambush pose ready to strike from darkness, eyes glowing faint purple through hood, armor fragments phasing in and out of reality, The Rift borderlands aesthetic --ar 2:3 --v 6.1 --style raw --s 250
+
+12. RARE - Spectre Phantom
+Elite assassin in form-fitting void-weave suit, body half-dissolved into black mist with visible skeleton pattern, mid-blinkstrike pose with afterimage trail, ghost-blade humming with negative light, mask of shifting smoke-faces, sci-fantasy fusion, rift-shadow realm background --ar 2:3 --v 6.1 --style raw --s 250
+
+13. EPIC - Spectre Revenant
+Death-touched operative in living shadow-armor that flows like liquid darkness, multiple ghost-arms reaching from back holding ethereal weapons, haunting emergence-from-void pose with terrified reflection in blade, hollow eye-sockets containing dying stars, armor trailing eternal black flame, The Rift between-life-and-death aesthetic, dramatic rim lighting --ar 2:3 --v 6.1 --style raw --s 250
+
+14. LEGENDARY - Spectre Dread
+Mythic entity in armor woven from stolen memories and nightmares, body constantly fragmenting and reforming across multiple positions simultaneously, executioner's flourish pose with victim's shadow impaled on blade, face a featureless void showing viewer's own death, cape of screaming captured souls, legendary horror hero shot, The Rift existential dread --ar 2:3 --v 6.1 --style raw --s 300
+
+15. OMEGA - Spectre Oblivion
+Cosmic extinction event wearing the shape of death itself, non-euclidean shadow mass wearing armor that cannot exist, true form reveal pose as infinite void opens behind, presence erasing color from surroundings, blade that cuts concepts not matter, god-tier absence, maximum detail, The Rift total annihilation aesthetic --ar 2:3 --v 6.1 --style raw --s 400 --q 2
+
+======================================
+ROGUES (Speed/Precision)
+======================================
+
+16. COMMON - Rogue Cutpurse
+A nimble scavenger in patched leather and stolen tech, jury-rigged plasma daggers with exposed wiring, dynamic leap-across-rooftops pose, wind-whipped scarf trailing behind, mismatched boots from different enemies, cheeky grin visible, The Rift undercity aesthetic --ar 2:3 --v 6.1 --style raw --s 250
+
+17. RARE - Rogue Swiftblade
+Elite duelist in streamlined aerodynamic armor with kinetic-redirection plating, twin monofilament blades blurring from speed, mid-flourish pose creating afterimage circles, targeting reticle projecting from eye-mask, trophy belt of disabled security drones, sci-fantasy fusion, rift-heist getaway background --ar 2:3 --v 6.1 --style raw --s 250
+
+18. EPIC - Rogue Shadowdancer
+Master infiltrator in reactive camo-suit shifting colors with movement, twelve throwing blades suspended in frozen-time arc around body, impossible contortion dodge pose bending around incoming projectile, mask displaying enemy fear levels, boots leaving blue-shifted gravity ripples, The Rift temporal slipstream aesthetic, dramatic rim lighting --ar 2:3 --v 6.1 --style raw --s 250
+
+19. LEGENDARY - Rogue Thousand Cuts
+Mythic assassin in probability-manipulation armor existing in all positions at once, victim surrounded by thousand simultaneous strikes already landing, omnipresent blur pose filling frame with afterimages, face never seen same way twice, belt of unique kill-trophies from impossible targets, legendary hero shot, The Rift certainty-defying precision --ar 2:3 --v 6.1 --style raw --s 300
+
+20. OMEGA - Rogue Paradox
+Cosmic inevitability wearing velocity itself, armor made of pure kinetic energy frozen into solid, strike-before-the-intent pose breaking causality, target already dead before image rendered, presence causing time to stutter-step, blade that hits yesterday, god-tier speed, maximum detail, The Rift temporal assassination aesthetic --ar 2:3 --v 6.1 --style raw --s 400 --q 2
+
+======================================
+CONDUITS (Magic/Energy)
+======================================
+
+21. COMMON - Conduit Spark
+A novice channeler in threadbare robes with jury-rigged focusing gauntlets, uncontrolled energy arcing between hands, struggling containment pose with hair standing on end from static, scorch marks on clothing, cracked lens-headband, nervous excited expression, The Rift wild magic aesthetic --ar 2:3 --v 6.1 --style raw --s 250
+
+22. RARE - Conduit Channeler
+Trained energy manipulator in geometric circuit-embedded vestments, stable plasma orbs orbiting in precise patterns, casting stance with geometric spell-forms manifesting, ritual tattoos glowing with channeled power, crystalline focus-harness on chest, sci-fantasy fusion, rift-mana storm background --ar 2:3 --v 6.1 --style raw --s 250
+
+23. EPIC - Conduit Stormweaver
+Arch-magus in living armor of woven energy currents, multiple spell-satellites orbiting creating mandala patterns, world-bending invocation pose causing reality to warp around hands, third eye open projecting beam of pure concept, beard/hair become actual lightning, The Rift surplus energy aesthetic, dramatic rim lighting --ar 2:3 --v 6.1 --style raw --s 250
+
+24. LEGENDARY - Conduit Archon
+Mythic sage in armor that is simultaneously solid matter and pure spell construct, personal gravity well compressing light into visible spectrum halos, apotheosis pose ascending while grounded, hands rewriting local physics, crown of dying stars orbiting head, legendary hero shot, The Rift fundamental forces commanded --ar 2:3 --v 6.1 --style raw --s 300
+
+25. OMEGA - Conduit Source
+Cosmic font of all energy wearing mortal shape as convenience, non-euclidean star-armor containing infinite heat in finite space, big bang recreation pose with universe forming between palms, presence causing ambient matter to achieve fusion, eyes showing birth and death of stars, god-tier power, maximum detail, The Rift creation energy aesthetic --ar 2:3 --v 6.1 --style raw --s 400 --q 2
+
+======================================
+QUICK REFERENCE - RARITY KEYWORDS
+======================================
+
+Common:   Battered, scavenged, simple effects, worn, exposed
+Rare:     Polished, functional, active effects, dynamic motion
+Epic:     Ornate, detailed, multiple effects, dramatic lighting
+Legendary: Living/mythic, massive scale, heroic framing
+Omega:    Reality-bending, cosmic, god-tier, environment warps
+
+======================================
+USAGE TIPS
+======================================
+- All prompts use --ar 2:3 for portrait card format
+- All use --v 6.1 --style raw for clean output
+- Stylize (-s) scales with rarity: 250/250/250/300/400
+- Omega prompts include --q 2 for extra quality
+- Copy entire line including parameters
