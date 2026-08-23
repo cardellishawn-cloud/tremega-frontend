@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { isAuthenticated } from '../lib/auth';
 
-export default function ProtectedRoute() {
+export default function ProtectedRoute({ children }) {
   if (!isAuthenticated()) {
     return <Navigate to="/" replace />;
   }
 
-  return <Outlet />;
+  return children || <Outlet />;
 }
