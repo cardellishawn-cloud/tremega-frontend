@@ -66,7 +66,21 @@ export default function Dashboard() {
           >
             Log Out
           </button>
-        </div>
+        </div>{/* Main Layout */}
+<div className="flex">
+  {/* Sidebar */}
+  <aside className="w-64 bg-white shadow-lg border-r border-gray-200 px-6 py-8">
+    <nav className="space-y-2">
+      <NavLink to="/dashboard" label="Dashboard" />
+      <NavLink to="/bids" label="Bids" />
+      <NavLink to="/subs" label="Subs" />
+      <NavLink to="/jobs" label="Jobs" />
+      <NavLink to="/profile" label="Profile" />
+    </nav>
+  </aside>
+
+  {/* Main Content */}
+  <main className="flex-1 px-12 py-8">
       </header>
 
       {/* Main Content */}
