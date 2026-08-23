@@ -100,7 +100,7 @@ export function BidsList({ initialStatusFilter }: BidsListProps) {
               <option value="rejected">Rejected</option>
               <option value="expired">Expired</option>
             </Select>
-            <Button onClick={() => navigate("/bids/new")}>
+            <Button onClick={() => navigate("/dashboard/bids/new")}>
               <Plus className="mr-2 h-4 w-4" />
               New Bid
             </Button>
@@ -143,7 +143,7 @@ export function BidsList({ initialStatusFilter }: BidsListProps) {
                         <Button
                           variant="ghost"
                           size="icon"
-                          onClick={() => navigate(`/bids/${bid.id}`)}
+                          onClick={() => navigate(`/dashboard/bids/${bid.id}`)}
                           title="Preview"
                         >
                           <Eye className="h-4 w-4" />
@@ -154,7 +154,7 @@ export function BidsList({ initialStatusFilter }: BidsListProps) {
                             <Button
                               variant="ghost"
                               size="icon"
-                              onClick={() => navigate(`/bids/${bid.id}/edit`)}
+                              onClick={() => navigate(`/dashboard/bids/${bid.id}/edit`)}
                               title="Edit"
                             >
                               <Pencil className="h-4 w-4" />

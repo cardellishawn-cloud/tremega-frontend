@@ -72,8 +72,8 @@ export function SubAssignmentPanel({
       >
         <option value="">Select a sub...</option>
         {activeSubs.map((sub) => (
-          <option key={sub.user_id} value={sub.user_id}>
-            {sub.users.first_name} {sub.users.last_name}
+          <option key={sub.id} value={sub.id}>
+            {sub.name}
           </option>
         ))}
       </Select>

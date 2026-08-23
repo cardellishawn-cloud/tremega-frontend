@@ -161,7 +161,7 @@ export function BidForm() {
       } else {
         await createBid.mutateAsync(input)
       }
-      navigate("/bids")
+      navigate("/dashboard/bids")
     } catch (error: any) {
       console.error("Failed to save bid:", error)
       setSubmitError(error.response?.data?.error || error.message || "Failed to save bid. Please try again.")
@@ -184,7 +184,7 @@ export function BidForm() {
     <Card>
       <CardHeader>
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" onClick={() => navigate("/bids")}>
+          <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard/bids")}>
             <ArrowLeft className="h-4 w-4" />
           </Button>
           <CardTitle>{isEditMode ? "Edit Bid" : "Create New Bid"}</CardTitle>
@@ -418,7 +418,7 @@ export function BidForm() {
           </div>
 
           <div className="flex justify-end gap-4">
-            <Button type="button" variant="outline" onClick={() => navigate("/bids")}>
+            <Button type="button" variant="outline" onClick={() => navigate("/dashboard/bids")}>
               Cancel
             </Button>
             <Button type="submit" disabled={isPending}>

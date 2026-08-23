@@ -68,7 +68,7 @@ export function BidPreview() {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" onClick={() => navigate("/bids")}>
+              <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard/bids")}>
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <div>
@@ -166,7 +166,7 @@ export function BidPreview() {
           <div className="flex justify-end gap-4 pt-4 border-t">
             {bid.status === 'draft' && (
               <>
-                <Button variant="outline" onClick={() => navigate(`/bids/${bid.id}/edit`)}>
+                <Button variant="outline" onClick={() => navigate(`/dashboard/bids/${bid.id}/edit`)}>
                   <Pencil className="mr-2 h-4 w-4" />
                   Edit
                 </Button>
