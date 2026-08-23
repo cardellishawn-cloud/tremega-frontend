@@ -1,8 +1,9 @@
-export default function BidsPage() {
+import { BidsList } from "@/components/BidsList"
+
+export function BidsPage() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6">Bids</h1>
-      <p className="text-gray-600">Bids page coming soon.</p>
+    <div className="container mx-auto py-6">
+      <BidsList />
     </div>
-  );
+  )
 }

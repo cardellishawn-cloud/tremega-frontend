@@ -1,44 +1,64 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import AuthLayout from './pages/AuthLayout';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import Dashboard from './pages/Dashboard';
-import DashboardLayout from './components/DashboardLayout';
-import BidsPage from './pages/BidsPage';
-import SubsPage from './pages/SubsPage';
-import JobsPage from './pages/JobsPage';
-import ProfilePage from './pages/ProfilePage';
-import ProtectedRoute from './components/ProtectedRoute';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { AuthProvider } from "@/context/AuthContext"
+import { ProtectedRoute } from "@/components/ProtectedRoute"
+import { DashboardLayout } from "@/components/DashboardLayout"
+import { LoginPage } from "@/pages/LoginPage"
+import { SignupPage } from "@/pages/SignupPage"
+import { DashboardPage } from "@/pages/DashboardPage"
+import { BidsPage } from "@/pages/BidsPage"
+import { SubsPage } from "@/pages/SubsPage"
+import { JobsPage } from "@/pages/JobsPage"
+import { ProfilePage } from "@/pages/ProfilePage"
+import { SubDashboard } from "@/pages/SubDashboard"
+import { BidForm } from "@/components/BidForm"
+import { BidPreview } from "@/components/BidPreview"
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      retry: false,
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      refetchOnReconnect: false,
+    },
+  },
+})
 
 function App() {
   return (
-    <Routes>
-      {/* Auth pages with shared layout */}
-      <Route element={<AuthLayout />}>
-        <Route path="/" element={<Login />} />
-        <Route path="/sign-up" element={<SignUp />} />
-      </Route>
-
-      {/* Protected routes with DashboardLayout */}
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<Dashboard />} />
-        <Route path="bids" element={<BidsPage />} />
-        <Route path="subs" element={<SubsPage />} />
-        <Route path="jobs" element={<JobsPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-      </Route>
-
-      {/* Catch all — redirect to login */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
-  );
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<DashboardPage />} />
+              <Route path="bids" element={<BidsPage />} />
+              <Route path="bids/new" element={<BidForm />} />
+              <Route path="bids/:id" element={<BidPreview />} />
+              <Route path="bids/:id/edit" element={<BidForm />} />
+              <Route path="subs" element={<SubsPage />} />
+              <Route path="jobs" element={<JobsPage />} />
+              <Route path="profile" element={<ProfilePage />} />
+              <Route path="sub-dashboard" element={<SubDashboard />} />
+            </Route>
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
+  )
 }
 
-export default App;
+export default App

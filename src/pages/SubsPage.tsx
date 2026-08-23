@@ -1,8 +1,9 @@
-export default function SubsPage() {
+import { SubsList } from "@/components/SubsList"
+
+export function SubsPage() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6">Subs</h1>
-      <p className="text-gray-600">Subs page coming soon.</p>
+    <div className="container mx-auto py-6">
+      <SubsList />
     </div>
-  );
+  )
 }
