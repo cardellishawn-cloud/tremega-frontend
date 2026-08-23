@@ -3,6 +3,11 @@ import AuthLayout from './pages/AuthLayout';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
+import DashboardLayout from './components/DashboardLayout';
+import BidsPage from './pages/BidsPage';
+import SubsPage from './pages/SubsPage';
+import JobsPage from './pages/JobsPage';
+import ProfilePage from './pages/ProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -14,9 +19,15 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
       </Route>
 
-      {/* Protected routes */}
+      {/* Protected routes with DashboardLayout */}
       <Route element={<ProtectedRoute />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="bids" element={<BidsPage />} />
+          <Route path="subs" element={<SubsPage />} />
+          <Route path="jobs" element={<JobsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+        </Route>
       </Route>
 
       {/* Catch all — redirect to login */}
@@ -24,5 +35,7 @@ function App() {
     </Routes>
   );
 }
+
+export default App;
 
 export default App;
