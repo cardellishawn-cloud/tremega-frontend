@@ -1,19 +1,43 @@
 import { useAuth } from "@/context/AuthContext"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { FileText, Users, Briefcase, Home, Settings, User, LogOut } from "lucide-react"
-import { Link, useNavigate, Outlet } from "react-router-dom"
+import {
+  FileText,
+  Users,
+  Briefcase,
+  Home,
+  User,
+  LogOut,
+} from "lucide-react"
+import { Link, NavLink as RouterNavLink, useNavigate, Outlet } from "react-router-dom"
 
-function NavLink({ to, label, icon: Icon }: { to: string; label: string; icon: any }) {
+function SidebarLink({
+  to,
+  label,
+  icon: Icon,
+  end,
+}: {
+  to: string
+  label: string
+  icon: any
+  end?: boolean
+}) {
   return (
-    <Link
+    <RouterNavLink
       to={to}
-      className="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100 text-gray-700 font-medium transition-colors"
+      end={end}
+      className={({ isActive }) =>
+        `flex items-center px-4 py-2.5 mx-2 rounded-lg text-sm font-medium transition-colors ${
+          isActive
+            ? "bg-[#3B2F8A]/10 text-[#3B2F8A]"
+            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+        }`
+      }
     >
       <Icon className="mr-3 h-4 w-4" />
       {label}
-    </Link>
-  );
+    </RouterNavLink>
+  )
 }
 
 export function DashboardLayout() {
@@ -27,68 +51,58 @@ export function DashboardLayout() {
     navigate("/login")
   }
 
-  const navLinks = [
-    { to: "/dashboard", label: "Dashboard", icon: Home },
-    { to: "/bids", label: "Bids", icon: FileText },
-    { to: "/subs", label: "Subs", icon: Users },
-    { to: "/jobs", label: "Jobs", icon: Briefcase },
-    { to: "/customers", label: "Customers", icon: Users },
-    { to: "/profile", label: "Profile", icon: User },
-    { to: "/settings", label: "Settings", icon: Settings },
-  ]
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Top Navigation Bar */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <Link to="/dashboard" className="text-2xl font-bold text-[#3B2F8A]">
-              Tremega
-            </Link>
-            <nav className="hidden md:flex items-center gap-2">
-              {navLinks.slice(0, 3).map((link) => (
-                <Link key={link.to} to={link.to}>
-                  <Button variant="ghost" size="sm">
-                    <link.icon className="mr-2 h-4 w-4" />
-                    {link.label}
-                  </Button>
-                </Link>
-              ))}
-            </nav>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="text-right">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* ── Header ── */}
+      <header className="bg-[#1e1b4b] text-white shadow-md sticky top-0 z-50">
+        <div className="px-6 py-3 flex items-center justify-between">
+          <Link
+            to="/dashboard"
+            className="text-2xl font-bold tracking-tight text-white hover:text-gray-200 transition-colors"
+          >
+            Tremega
+          </Link>
+
+          <div className="flex items-center gap-4">
+            <div className="text-right hidden sm:block">
               <div className="text-sm font-medium">{user.full_name}</div>
-              <Badge variant="secondary" className="text-xs capitalize">
+              <Badge
+                variant="secondary"
+                className="text-xs capitalize bg-white/10 text-white border-white/20"
+              >
                 {user.role}
               </Badge>
             </div>
-            <Button variant="ghost" size="sm" onClick={handleLogout}>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleLogout}
+              className="text-white hover:bg-white/10 hover:text-white"
+            >
               <LogOut className="mr-2 h-4 w-4" />
-              Logout
+              Log Out
             </Button>
           </div>
         </div>
       </header>
 
-      <div className="flex">
+      {/* ── Body: sidebar + content ── */}
+      <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <div className="w-64 bg-white shadow-lg min-h-screen">
-          <div className="p-6">
-            <h2 className="text-xl font-bold text-gray-800">Navigation</h2>
-          </div>
-          <nav className="mt-6 space-y-1">
-            {navLinks.map((link) => (
-              <NavLink key={link.to} to={link.to} label={link.label} icon={link.icon} />
-            ))}
+        <aside className="w-60 bg-white border-r shadow-sm flex-shrink-0 overflow-y-auto">
+          <nav className="py-6 space-y-1">
+            <SidebarLink to="/dashboard" label="Dashboard" icon={Home} end />
+            <SidebarLink to="/dashboard/bids" label="Bids" icon={FileText} />
+            <SidebarLink to="/dashboard/subs" label="Subs" icon={Users} />
+            <SidebarLink to="/dashboard/jobs" label="Jobs" icon={Briefcase} />
+            <SidebarLink to="/dashboard/profile" label="Profile" icon={User} />
           </nav>
-        </div>
+        </aside>
 
-        {/* Main Content */}
-        <div className="flex-1 p-8">
+        {/* Main content */}
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8">
           <Outlet />
-        </div>
+        </main>
       </div>
     </div>
   )

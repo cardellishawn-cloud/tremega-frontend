@@ -1,4 +1,5 @@
 import { useAuth } from "@/context/AuthContext"
+import { Link } from "react-router-dom"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { FileText, Users, Briefcase } from "lucide-react"
@@ -54,14 +55,14 @@ export function DashboardPage() {
             <CardTitle>Quick Actions</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
-            <a href="/bids" className="block p-3 rounded-md hover:bg-accent transition-colors">
+            <Link to="/dashboard/bids" className="block p-3 rounded-md hover:bg-accent transition-colors">
               <div className="font-medium">View Bids</div>
               <div className="text-sm text-muted-foreground">Manage your bids and estimates</div>
-            </a>
-            <a href="/subs" className="block p-3 rounded-md hover:bg-accent transition-colors">
+            </Link>
+            <Link to="/dashboard/subs" className="block p-3 rounded-md hover:bg-accent transition-colors">
               <div className="font-medium">View Subs</div>
               <div className="text-sm text-muted-foreground">Manage subcontractors</div>
-            </a>
+            </Link>
           </CardContent>
         </Card>
 

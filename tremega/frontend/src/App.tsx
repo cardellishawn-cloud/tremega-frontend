@@ -8,6 +8,8 @@ import { SignupPage } from "@/pages/SignupPage"
 import { DashboardPage } from "@/pages/DashboardPage"
 import { BidsPage } from "@/pages/BidsPage"
 import { SubsPage } from "@/pages/SubsPage"
+import { JobsPage } from "@/pages/JobsPage"
+import { ProfilePage } from "@/pages/ProfilePage"
 import { SubDashboard } from "@/pages/SubDashboard"
 import { BidForm } from "@/components/BidForm"
 import { BidPreview } from "@/components/BidPreview"
@@ -46,6 +48,8 @@ function App() {
               <Route path="bids/:id" element={<BidPreview />} />
               <Route path="bids/:id/edit" element={<BidForm />} />
               <Route path="subs" element={<SubsPage />} />
+              <Route path="jobs" element={<JobsPage />} />
+              <Route path="profile" element={<ProfilePage />} />
               <Route path="sub-dashboard" element={<SubDashboard />} />
             </Route>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
