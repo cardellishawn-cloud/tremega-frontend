@@ -20,14 +20,19 @@ function App() {
       </Route>
 
       {/* Protected routes with DashboardLayout */}
-      <Route element={<ProtectedRoute />}>
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="bids" element={<BidsPage />} />
-          <Route path="subs" element={<SubsPage />} />
-          <Route path="jobs" element={<JobsPage />} />
-          <Route path="profile" element={<ProfilePage />} />
-        </Route>
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Dashboard />} />
+        <Route path="bids" element={<BidsPage />} />
+        <Route path="subs" element={<SubsPage />} />
+        <Route path="jobs" element={<JobsPage />} />
+        <Route path="profile" element={<ProfilePage />} />
       </Route>
 
       {/* Catch all — redirect to login */}
@@ -37,5 +42,3 @@ function App() {
 }
 
 export default App;
-
-
