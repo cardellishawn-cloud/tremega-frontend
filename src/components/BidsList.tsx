@@ -20,9 +20,17 @@ export function BidsList({ initialStatusFilter }: BidsListProps) {
   const [statusFilter, setStatusFilter] = useState<BidStatus | "all">(initialStatusFilter || "all")
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
   
-  const { data: bids, isLoading, error } = useGetBids(
+  const { data: bidsResponse, isLoading, error } = useGetBids(
     statusFilter !== "all" ? { status: statusFilter } : undefined
   )
+  
+  // Debug logging to understand the API response
+  console.log('Bids API Response:', bidsResponse)
+  console.log('Is Array:', Array.isArray(bidsResponse))
+  console.log('Type:', typeof bidsResponse)
+  
+  // Ensure bids is always an array
+  const bids = Array.isArray(bidsResponse) ? bidsResponse : []
   
   const deleteBid = useDeleteBid()
   const sendBid = useSendBid()
@@ -73,6 +81,41 @@ export function BidsList({ initialStatusFilter }: BidsListProps) {
   }
 
   if (error) {
+    // If it's a 404 error (endpoint not found), show empty state instead of error
+    if (error.message?.includes('404') || error.message?.includes('Not Found')) {
+      return (
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle>Bids & Estimates</CardTitle>
+            <div className="flex items-center gap-4">
+              <Select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value as BidStatus | "all")}
+                className="w-[150px]"
+              >
+                <option value="all">All Status</option>
+                <option value="draft">Draft</option>
+                <option value="sent">Sent</option>
+                <option value="accepted">Accepted</option>
+                <option value="rejected">Rejected</option>
+                <option value="expired">Expired</option>
+              </Select>
+              <Button onClick={() => navigate("/dashboard/bids/new")}>
+                <Plus className="mr-2 h-4 w-4" />
+                New Bid
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-center py-10 text-muted-foreground">
+              <p className="mb-4">Bids feature is not yet implemented on the backend.</p>
+              <p className="text-sm">The bids API endpoint needs to be created.</p>
+            </div>
+          </CardContent>
+        </Card>
+      )
+    }
+    
     return (
       <Card>
         <CardContent className="flex items-center justify-center py-10">
