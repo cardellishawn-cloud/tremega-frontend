@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { formatCurrency, formatDate } from "@/lib/utils"
 import { ArrowLeft, Send, Check, X, Pencil } from "lucide-react"
+import { InvoicePDF } from "./InvoicePDF"
 
 export function BidPreview() {
   const navigate = useNavigate()
@@ -164,6 +165,7 @@ export function BidPreview() {
 
           {/* Actions */}
           <div className="flex justify-end gap-4 pt-4 border-t">
+            <InvoicePDF bid={bid} />
             {bid.status === 'draft' && (
               <>
                 <Button variant="outline" onClick={() => navigate(`/dashboard/bids/${bid.id}/edit`)}>
