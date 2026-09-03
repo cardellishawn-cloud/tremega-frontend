@@ -17,9 +17,9 @@ export function DashboardPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-6 sm:mb-8">
         <div>
-          <h1 className="text-3xl font-bold">Welcome, {user.full_name}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Welcome, {user.full_name}</h1>
           <div className="flex items-center gap-2 mt-2">
             <Badge variant="secondary" className="capitalize">
               {user.role}
@@ -33,7 +33,7 @@ export function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
         {stats.map((stat) => (
           <Card key={stat.label}>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -49,17 +49,17 @@ export function DashboardPage() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
-            <Link to="/dashboard/bids" className="block p-3 rounded-md hover:bg-accent transition-colors">
+            <Link to="/dashboard/bids" className="block p-4 rounded-md hover:bg-accent active:bg-accent/80 transition-colors min-h-[44px]">
               <div className="font-medium">View Bids</div>
               <div className="text-sm text-muted-foreground">Manage your bids and estimates</div>
             </Link>
-            <Link to="/dashboard/subs" className="block p-3 rounded-md hover:bg-accent transition-colors">
+            <Link to="/dashboard/subs" className="block p-4 rounded-md hover:bg-accent active:bg-accent/80 transition-colors min-h-[44px]">
               <div className="font-medium">View Subs</div>
               <div className="text-sm text-muted-foreground">Manage subcontractors</div>
             </Link>

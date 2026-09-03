@@ -9,8 +9,8 @@ export function ProfilePage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Profile</h1>
-      <Card className="max-w-lg">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Profile</h1>
+      <Card className="w-full sm:max-w-lg">
         <CardHeader>
           <CardTitle>Account Information</CardTitle>
         </CardHeader>

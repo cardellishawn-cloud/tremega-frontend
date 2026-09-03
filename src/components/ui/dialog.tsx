@@ -5,7 +5,7 @@ const Dialog = ({ children, open, onOpenChange }: { children: React.ReactNode; o
   if (!open) return null
   
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
       <div 
         className="fixed inset-0 bg-black/80" 
         onClick={() => onOpenChange?.(false)}
@@ -21,7 +21,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTML
     <div
       ref={ref}
       className={cn(
-        "relative z-50 grid w-full max-w-lg gap-4 border bg-background p-6 shadow-lg duration-200 sm:rounded-lg",
+        "relative z-50 grid w-full max-w-lg gap-4 border bg-background p-4 sm:p-6 shadow-lg duration-200 rounded-t-lg sm:rounded-lg max-h-[90vh] overflow-y-auto mx-4 sm:mx-0",
         className
       )}
       {...props}

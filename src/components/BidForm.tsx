@@ -299,8 +299,8 @@ export function BidForm() {
             
             <div className="space-y-4">
               {lineItems.map((item, index) => (
-                <div key={index} className="grid grid-cols-12 gap-2 items-end p-4 border rounded-lg">
-                  <div className="col-span-12 md:col-span-4 space-y-2">
+                <div key={index} className="grid grid-cols-2 md:grid-cols-12 gap-3 md:gap-2 items-end p-4 border rounded-lg">
+                  <div className="col-span-2 md:col-span-4 space-y-2">
                     <label className="text-xs text-muted-foreground">Description</label>
                     <Input
                       value={item.description}
@@ -309,7 +309,7 @@ export function BidForm() {
                     />
                   </div>
                   
-                  <div className="col-span-6 md:col-span-2 space-y-2">
+                  <div className="col-span-1 md:col-span-2 space-y-2">
                     <label className="text-xs text-muted-foreground">Type</label>
                     <Select
                       value={item.type}
@@ -323,7 +323,7 @@ export function BidForm() {
                     </Select>
                   </div>
                   
-                  <div className="col-span-6 md:col-span-1 space-y-2">
+                  <div className="col-span-1 md:col-span-1 space-y-2">
                     <label className="text-xs text-muted-foreground">Qty</label>
                     <Input
                       type="number"
@@ -334,7 +334,7 @@ export function BidForm() {
                     />
                   </div>
                   
-                  <div className="col-span-6 md:col-span-2 space-y-2">
+                  <div className="col-span-1 md:col-span-2 space-y-2">
                     <label className="text-xs text-muted-foreground">Unit</label>
                     <Select
                       value={item.unit}
@@ -348,7 +348,7 @@ export function BidForm() {
                     </Select>
                   </div>
                   
-                  <div className="col-span-6 md:col-span-2 space-y-2">
+                  <div className="col-span-1 md:col-span-2 space-y-2">
                     <label className="text-xs text-muted-foreground">Unit Price</label>
                     <Input
                       type="number"
@@ -359,7 +359,7 @@ export function BidForm() {
                     />
                   </div>
                   
-                  <div className="col-span-12 md:col-span-1 flex items-center justify-end gap-2">
+                  <div className="col-span-2 md:col-span-1 flex items-center justify-end gap-2">
                     <span className="text-sm font-medium">
                       {formatCurrency(calculateLineItemTotal(item))}
                     </span>
@@ -369,6 +369,7 @@ export function BidForm() {
                       size="icon"
                       onClick={() => removeLineItem(index)}
                       disabled={lineItems.length === 1}
+                      className="min-h-[44px] min-w-[44px]"
                     >
                       <Trash2 className="h-4 w-4 text-destructive" />
                     </Button>
@@ -401,7 +402,7 @@ export function BidForm() {
           </div>
 
           <div className="flex justify-end space-y-2">
-            <div className="w-64 space-y-2 text-right">
+            <div className="w-full sm:w-64 space-y-2 text-right">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal:</span>
                 <span>{formatCurrency(subtotal)}</span>
@@ -417,11 +418,11 @@ export function BidForm() {
             </div>
           </div>
 
-          <div className="flex justify-end gap-4">
-            <Button type="button" variant="outline" onClick={() => navigate("/dashboard/bids")}>
+          <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-4">
+            <Button type="button" variant="outline" onClick={() => navigate("/dashboard/bids")} className="w-full sm:w-auto">
               Cancel
             </Button>
-            <Button type="submit" disabled={isPending}>
+            <Button type="submit" disabled={isPending} className="w-full sm:w-auto">
               {isPending ? "Saving..." : isEditMode ? "Update Bid" : "Create Bid"}
             </Button>
           </div>

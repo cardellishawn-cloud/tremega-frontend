@@ -66,13 +66,13 @@ export function BidPreview() {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard/bids")}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <Button variant="ghost" size="icon" onClick={() => navigate("/dashboard/bids")} className="min-h-[44px] min-w-[44px]">
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <div>
-                <CardTitle className="text-2xl">{bid.title}</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl">{bid.title}</CardTitle>
                 <p className="text-muted-foreground mt-1">
                   Created {formatDate(bid.created_at)}
                 </p>
@@ -97,7 +97,7 @@ export function BidPreview() {
               </div>
             </div>
             
-            <div className="text-right">
+            <div className="sm:text-right">
               <h3 className="font-semibold mb-2">Bid Details</h3>
               <div className="text-muted-foreground space-y-1">
                 <p>Status: <BidStatusBadge status={bid.status} daysUntilExpiration={bid.daysUntilExpiration} /></p>
@@ -112,23 +112,23 @@ export function BidPreview() {
           {/* Line Items */}
           <div>
             <h3 className="font-semibold mb-4">Line Items</h3>
-            <div className="border rounded-lg overflow-hidden">
-              <table className="w-full">
+            <div className="border rounded-lg overflow-x-auto">
+              <table className="w-full min-w-[400px]">
                 <thead className="bg-muted">
                   <tr>
-                    <th className="text-left p-3 font-medium">Description</th>
-                    <th className="text-right p-3 font-medium">Qty</th>
-                    <th className="text-right p-3 font-medium">Unit Price</th>
-                    <th className="text-right p-3 font-medium">Total</th>
+                    <th className="text-left p-3 font-medium text-sm">Description</th>
+                    <th className="text-right p-3 font-medium text-sm">Qty</th>
+                    <th className="text-right p-3 font-medium text-sm">Unit Price</th>
+                    <th className="text-right p-3 font-medium text-sm">Total</th>
                   </tr>
                 </thead>
                 <tbody>
                   {bid.line_items?.map((item) => (
                     <tr key={item.id} className="border-t">
-                      <td className="p-3">{item.description}</td>
-                      <td className="p-3 text-right">{item.quantity}</td>
-                      <td className="p-3 text-right">{formatCurrency(item.unit_price)}</td>
-                      <td className="p-3 text-right">{formatCurrency(item.amount)}</td>
+                      <td className="p-3 text-sm">{item.description}</td>
+                      <td className="p-3 text-right text-sm">{item.quantity}</td>
+                      <td className="p-3 text-right text-sm">{formatCurrency(item.unit_price)}</td>
+                      <td className="p-3 text-right text-sm">{formatCurrency(item.amount)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -138,7 +138,7 @@ export function BidPreview() {
 
           {/* Totals */}
           <div className="flex justify-end">
-            <div className="w-64 space-y-2">
+            <div className="w-full sm:w-64 space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal:</span>
                 <span>{formatCurrency(bid.subtotal)}</span>
@@ -163,7 +163,7 @@ export function BidPreview() {
           )}
 
           {/* Actions */}
-          <div className="flex justify-end gap-4 pt-4 border-t">
+          <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-4 pt-4 border-t">
             {bid.status === 'draft' && (
               <>
                 <Button variant="outline" onClick={() => navigate(`/dashboard/bids/${bid.id}/edit`)}>

@@ -53,17 +53,58 @@
   * {
     @apply border-border;
   }
+
+  html {
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+    /* Prevent text size adjust on orientation change */
+    -webkit-text-size-adjust: 100%;
+  }
+
   body {
     @apply bg-background text-foreground;
+    /* Prevent horizontal scroll on mobile */
+    overflow-x: hidden;
+    /* Minimum readable font size */
+    font-size: 14px;
+    /* Better font rendering on mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
-  /* Disable animations to prevent flickering */
+
+  /* Allow sidebar transitions but keep them snappy */
   *,
   *::before,
   *::after {
-    animation-duration: 0s !important;
+    animation-duration: 0.15s !important;
     animation-delay: 0s !important;
-    transition-duration: 0s !important;
+    transition-duration: 0.15s !important;
     transition-delay: 0s !important;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0s !important;
+      transition-duration: 0s !important;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Ensure tap highlight is visible but not garish */
+  * {
+    -webkit-tap-highlight-color: rgba(59, 47, 138, 0.1);
+  }
+
+  /* Images lazy load by default */
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
