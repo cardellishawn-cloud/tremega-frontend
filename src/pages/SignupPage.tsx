@@ -52,7 +52,7 @@ export function SignupPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-[#3B2F8A]">
-            Tremega
+            TradePro
           </CardTitle>
           <p className="text-muted-foreground mt-2">Create your account</p>
         </CardHeader>

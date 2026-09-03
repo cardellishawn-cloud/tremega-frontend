@@ -119,7 +119,7 @@ export function DashboardLayout() {
               to="/dashboard"
               className="text-xl sm:text-2xl font-bold tracking-tight text-white hover:text-gray-200 transition-colors"
             >
-              Tremega
+              TradePro
             </Link>
           </div>
 
@@ -202,6 +202,13 @@ export function DashboardLayout() {
           <Outlet />
         </main>
       </div>
+
+      {/* ── Footer ── */}
+      <footer className="bg-white border-t px-4 sm:px-6 py-3">
+        <p className="text-xs text-muted-foreground text-center">
+          TradePro by Tremega
+        </p>
+      </footer>
     </div>
   )
 }

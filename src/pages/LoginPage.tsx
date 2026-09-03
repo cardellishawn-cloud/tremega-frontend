@@ -36,7 +36,7 @@ export function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-[#3B2F8A]">
-            Tremega
+            TradePro
           </CardTitle>
           <p className="text-muted-foreground mt-2">Sign in to your account</p>
         </CardHeader>
