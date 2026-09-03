@@ -7,6 +7,7 @@ export interface Photo {
   bid_id?: string
   business_id: string
   uploaded_by: string
+  file_path?: string
   photo_url: string
   description?: string
   phase: 'bid' | 'progress' | 'completion'
@@ -28,19 +29,30 @@ export function useGetPhotos(params: { businessId: string; bidId?: string; jobId
       searchParams.append('businessId', params.businessId)
       if (params.bidId) searchParams.append('bidId', params.bidId)
       if (params.jobId) searchParams.append('jobId', params.jobId)
-      
+
       const { data } = await api.get<Photo[]>(`/photos?${searchParams.toString()}`)
       return data
     },
     enabled: !!params.businessId && (!!params.bidId || !!params.jobId),
+    // Auto-refresh every 5 seconds for real-time feel
+    refetchInterval: 5000,
+    // Keep previous data while refetching to avoid flicker
+    placeholderData: (prev) => prev,
   })
 }
 
 export function useUploadPhoto() {
   const queryClient = useQueryClient()
-  
+
   return useMutation({
-    mutationFn: async (input: { file: File; businessId: string; bidId?: string; jobId?: string; phase: string; description?: string }) => {
+    mutationFn: async (input: {
+      file: File | Blob
+      businessId: string
+      bidId?: string
+      jobId?: string
+      phase: string
+      description?: string
+    }) => {
       const formData = new FormData()
       formData.append('file', input.file)
       formData.append('businessId', input.businessId)
@@ -48,7 +60,7 @@ export function useUploadPhoto() {
       if (input.jobId) formData.append('jobId', input.jobId)
       formData.append('phase', input.phase)
       if (input.description) formData.append('description', input.description)
-      
+
       const { data } = await api.post<Photo>('/photos/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -57,8 +69,8 @@ export function useUploadPhoto() {
       return data
     },
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({ 
-        queryKey: [PHOTOS_KEY, { businessId: variables.businessId, bidId: variables.bidId, jobId: variables.jobId }] 
+      queryClient.invalidateQueries({
+        queryKey: [PHOTOS_KEY, { businessId: variables.businessId, bidId: variables.bidId, jobId: variables.jobId }],
       })
     },
   })
@@ -66,15 +78,15 @@ export function useUploadPhoto() {
 
 export function useDeletePhoto() {
   const queryClient = useQueryClient()
-  
+
   return useMutation({
     mutationFn: async ({ id, businessId, bidId, jobId }: { id: string; businessId: string; bidId?: string; jobId?: string }) => {
       await api.delete(`/photos/${id}`)
       return { id, businessId, bidId, jobId }
     },
     onSuccess: (result) => {
-      queryClient.invalidateQueries({ 
-        queryKey: [PHOTOS_KEY, { businessId: result.businessId, bidId: result.bidId, jobId: result.jobId }] 
+      queryClient.invalidateQueries({
+        queryKey: [PHOTOS_KEY, { businessId: result.businessId, bidId: result.bidId, jobId: result.jobId }],
       })
     },
   })
