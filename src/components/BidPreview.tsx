@@ -1,19 +1,68 @@
+import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useGetBid, useSendBid, useAcceptBid, useRejectBid } from "@/hooks/useBids"
+import { useGetSubs } from "@/hooks/useSubs"
+import { useAuth } from "@/context/AuthContext"
 import { BidStatusBadge } from "./BidStatusBadge"
+import { AssignSubModal } from "./AssignSubModal"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { formatCurrency, formatDate } from "@/lib/utils"
-import { ArrowLeft, Send, Check, X, Pencil } from "lucide-react"
+import { ArrowLeft, Send, Check, X, Pencil, UserPlus, User } from "lucide-react"
 
 export function BidPreview() {
   const navigate = useNavigate()
   const { id } = useParams()
+  const { user } = useAuth()
   
   const { data: bid, isLoading, error } = useGetBid(id || "")
   const sendBid = useSendBid()
   const acceptBid = useAcceptBid()
   const rejectBid = useRejectBid()
+
+  // Fetch subs for displaying assigned sub names
+  const { data: subs } = useGetSubs(user?.id || "")
+
+  // Modal state for assign sub
+  const [assignModal, setAssignModal] = useState<{
+    open: boolean
+    lineItemId: string
+    lineItemDescription: string
+    assignedSubId?: string | null
+  }>({
+    open: false,
+    lineItemId: "",
+    lineItemDescription: "",
+    assignedSubId: null,
+  })
+
+  const openAssignModal = (lineItemId: string, description: string, assignedSubId?: string | null) => {
+    setAssignModal({
+      open: true,
+      lineItemId,
+      lineItemDescription: description,
+      assignedSubId: assignedSubId || null,
+    })
+  }
+
+  const closeAssignModal = () => {
+    setAssignModal((prev) => ({ ...prev, open: false }))
+  }
+
+  // Helper to get sub name by ID
+  const getSubName = (subId: string) => {
+    const sub = subs?.find((s) => s.id === subId)
+    return sub?.name || "Unknown"
+  }
+
+  // Debug logging
+  console.log('[BidPreview] Bid loaded:', bid?.id, '| Line items:', bid?.line_items?.length, '| Subs:', subs?.length, '| User:', user?.id)
+  if (bid?.line_items) {
+    bid.line_items.forEach((item, i) => {
+      console.log(`[BidPreview] Line item ${i}: id=${item.id} desc="${item.description}" assigned_sub_id=${item.assigned_sub_id || 'none'}`)
+    })
+  }
 
   const handleSend = async () => {
     if (!id) return
@@ -113,13 +162,14 @@ export function BidPreview() {
           <div>
             <h3 className="font-semibold mb-4">Line Items</h3>
             <div className="border rounded-lg overflow-x-auto">
-              <table className="w-full min-w-[400px]">
+              <table className="w-full min-w-[600px]">
                 <thead className="bg-muted">
                   <tr>
                     <th className="text-left p-3 font-medium text-sm">Description</th>
                     <th className="text-right p-3 font-medium text-sm">Qty</th>
                     <th className="text-right p-3 font-medium text-sm">Unit Price</th>
                     <th className="text-right p-3 font-medium text-sm">Total</th>
+                    <th className="text-center p-3 font-medium text-sm">Sub</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -129,6 +179,33 @@ export function BidPreview() {
                       <td className="p-3 text-right text-sm">{item.quantity}</td>
                       <td className="p-3 text-right text-sm">{formatCurrency(item.unit_price)}</td>
                       <td className="p-3 text-right text-sm">{formatCurrency(item.amount)}</td>
+                      <td className="p-3 text-center">
+                        {item.assigned_sub_id ? (
+                          <div className="flex items-center justify-center gap-2">
+                            <Badge variant="secondary" className="flex items-center gap-1">
+                              <User className="h-3 w-3" />
+                              {getSubName(item.assigned_sub_id)}
+                            </Badge>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => openAssignModal(item.id, item.description, item.assigned_sub_id)}
+                              className="text-xs"
+                            >
+                              Reassign
+                            </Button>
+                          </div>
+                        ) : (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => openAssignModal(item.id, item.description)}
+                          >
+                            <UserPlus className="mr-1 h-3 w-3" />
+                            Assign
+                          </Button>
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -201,6 +278,18 @@ export function BidPreview() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Assign Sub Modal */}
+      <AssignSubModal
+        open={assignModal.open}
+        onOpenChange={closeAssignModal}
+        bidId={bid.id}
+        lineItemId={assignModal.lineItemId}
+        lineItemDescription={assignModal.lineItemDescription}
+        businessId={user?.id || ""}
+        assignedSubId={assignModal.assignedSubId}
+        assignedSubName={assignModal.assignedSubId ? getSubName(assignModal.assignedSubId) : null}
+      />
     </div>
   )
 }
