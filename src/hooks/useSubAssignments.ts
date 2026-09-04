@@ -36,7 +36,10 @@ export function useAssignSubToLineItem() {
   
   return useMutation({
     mutationFn: async ({ bidId, lineItemId, subUserId }: { bidId: string; lineItemId: string; subUserId: string }) => {
-      const { data } = await api.post(`/bids/${bidId}/line-items/${lineItemId}/assign-sub`, { subUserId })
+      const url = `/bids/${bidId}/line-items/${lineItemId}/assign-sub`
+      const body = { subUserId }
+      console.log('[useAssignSubToLineItem] POST', url, 'body:', JSON.stringify(body))
+      const { data } = await api.post(url, body)
       return data
     },
     onSuccess: () => {

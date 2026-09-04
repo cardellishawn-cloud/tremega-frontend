@@ -51,6 +51,12 @@ export function AssignSubModal({
     if (!selectedSub) return
     setError(null)
 
+    // Debug: log exactly what we're sending
+    const payload = { bidId, lineItemId, subUserId: selectedSub }
+    console.log('[AssignSubModal] Sending payload:', JSON.stringify(payload))
+    console.log('[AssignSubModal] selectedSub value:', selectedSub, '| type:', typeof selectedSub, '| length:', selectedSub?.length)
+    console.log('[AssignSubModal] Available subs:', activeSubs.map(s => ({ id: s.id, name: s.name })))
+
     try {
       await assignSub.mutateAsync({
         bidId,
