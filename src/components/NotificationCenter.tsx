@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useAuth } from "@/context/AuthContext"
 import { useGetNotifications, useMarkAsRead, useMarkAllAsRead } from "@/hooks/useNotifications"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -7,11 +8,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { formatDate } from "@/lib/utils"
 import { Bell, Check, CheckCheck } from "lucide-react"
 
-const BUSINESS_ID = "biz-1" // TODO: Get from auth context
-
 export function NotificationCenter() {
+  const { user } = useAuth()
   const [open, setOpen] = useState(false)
-  const { data, isLoading } = useGetNotifications(BUSINESS_ID)
+  const userId = user?.id || ""
+  const { data, isLoading } = useGetNotifications(userId)
   const markAsRead = useMarkAsRead()
   const markAllAsRead = useMarkAllAsRead()
 
@@ -20,7 +21,7 @@ export function NotificationCenter() {
 
   const handleMarkAsRead = async (id: string) => {
     try {
-      await markAsRead.mutateAsync({ id, businessId: BUSINESS_ID })
+      await markAsRead.mutateAsync({ id, businessId: userId })
     } catch (error) {
       console.error("Failed to mark as read:", error)
     }
@@ -28,7 +29,7 @@ export function NotificationCenter() {
 
   const handleMarkAllAsRead = async () => {
     try {
-      await markAllAsRead.mutateAsync(BUSINESS_ID)
+      await markAllAsRead.mutateAsync(userId)
     } catch (error) {
       console.error("Failed to mark all as read:", error)
     }

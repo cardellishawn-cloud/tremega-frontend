@@ -3,6 +3,7 @@ import { useAuth } from "@/context/AuthContext"
 import { useGetSubscription } from "@/hooks/useBilling"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { NotificationCenter } from "@/components/NotificationCenter"
 import {
   FileText,
   Users,
@@ -132,6 +133,7 @@ export function DashboardLayout() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
+            <NotificationCenter />
             {isPro && (
               <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-0 hidden sm:flex items-center gap-1">
                 <Crown className="h-3 w-3" />
