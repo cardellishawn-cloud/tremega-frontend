@@ -17,6 +17,8 @@ import { PricingPage } from "@/pages/PricingPage"
 import { SubDashboard } from "@/pages/SubDashboard"
 import { BidForm } from "@/components/BidForm"
 import { BidPreview } from "@/components/BidPreview"
+import { DailyReportForm } from "@/components/DailyReportForm"
+import { TimesheetTracker } from "@/components/TimesheetTracker"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,6 +56,8 @@ function App() {
               <Route path="subs" element={<SubsPage />} />
               <Route path="jobs" element={<JobTracking />} />
               <Route path="jobs/old" element={<JobsPage />} />
+              <Route path="daily-report" element={<DailyReportForm />} />
+              <Route path="timesheets" element={<TimesheetTracker />} />
               <Route path="pricing" element={<PricingPage />} />
               <Route path="profile" element={<ContractorProfile />} />
               <Route path="profile/old" element={<ProfilePage />} />

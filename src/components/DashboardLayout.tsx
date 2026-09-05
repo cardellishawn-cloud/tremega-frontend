@@ -16,6 +16,8 @@ import {
   CreditCard,
   Crown,
   Receipt,
+  ClipboardList,
+  Clock,
 } from "lucide-react"
 import { Link, NavLink as RouterNavLink, useNavigate, Outlet, useLocation } from "react-router-dom"
 
@@ -102,6 +104,8 @@ export function DashboardLayout() {
       <SidebarLink to="/dashboard/bids" label="Bids" icon={FileText} onClick={closeSidebar} />
       <SidebarLink to="/dashboard/subs" label="Subs" icon={Users} onClick={closeSidebar} />
       <SidebarLink to="/dashboard/jobs" label="Jobs" icon={Briefcase} onClick={closeSidebar} />
+      <SidebarLink to="/dashboard/daily-report" label="Daily Report" icon={ClipboardList} onClick={closeSidebar} />
+      <SidebarLink to="/dashboard/timesheets" label="Timesheets" icon={Clock} onClick={closeSidebar} />
       <SidebarLink to="/dashboard/payments" label="Payments" icon={Receipt} onClick={closeSidebar} />
       <SidebarLink to="/dashboard/pricing" label="Pricing" icon={CreditCard} onClick={closeSidebar} />
       <SidebarLink to="/dashboard/profile" label="Profile" icon={User} onClick={closeSidebar} />
