@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 import { useAuth } from "@/context/AuthContext"
+import { useGetSubscription } from "@/hooks/useBilling"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -12,6 +13,7 @@ import {
   Menu,
   X,
   CreditCard,
+  Crown,
 } from "lucide-react"
 import { Link, NavLink as RouterNavLink, useNavigate, Outlet, useLocation } from "react-router-dom"
 
@@ -49,9 +51,13 @@ function SidebarLink({
 
 export function DashboardLayout() {
   const { user, logout } = useAuth()
+  const { data: subscription } = useGetSubscription()
   const navigate = useNavigate()
   const location = useLocation()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const isPro = subscription?.plan_tier === 'pro' || subscription?.plan_tier === 'enterprise'
+  const planName = subscription?.plan_tier ? subscription.plan_tier.charAt(0).toUpperCase() + subscription.plan_tier.slice(1) : null
 
   // Close sidebar on route change (mobile)
   useEffect(() => {
@@ -124,6 +130,12 @@ export function DashboardLayout() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
+            {isPro && (
+              <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-0 hidden sm:flex items-center gap-1">
+                <Crown className="h-3 w-3" />
+                {planName} Member
+              </Badge>
+            )}
             <div className="text-right hidden sm:block">
               <div className="text-sm font-medium">{user.full_name}</div>
               <Badge
@@ -184,12 +196,20 @@ export function DashboardLayout() {
           {/* Mobile user info */}
           <div className="md:hidden px-4 py-3 border-b bg-gray-50">
             <div className="text-sm font-medium text-gray-900">{user.full_name}</div>
-            <Badge
-              variant="secondary"
-              className="text-xs capitalize mt-1"
-            >
-              {user.role}
-            </Badge>
+            <div className="flex items-center gap-2 mt-1">
+              <Badge
+                variant="secondary"
+                className="text-xs capitalize"
+              >
+                {user.role}
+              </Badge>
+              {isPro && (
+                <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white border-0 text-xs flex items-center gap-1">
+                  <Crown className="h-3 w-3" />
+                  {planName}
+                </Badge>
+              )}
+            </div>
           </div>
 
           <nav className="py-4 md:py-6 space-y-1">

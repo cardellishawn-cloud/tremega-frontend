@@ -5,7 +5,7 @@ import { ProtectedRoute } from "@/components/ProtectedRoute"
 import { DashboardLayout } from "@/components/DashboardLayout"
 import { LoginPage } from "@/pages/LoginPage"
 import { SignupPage } from "@/pages/SignupPage"
-import { DashboardPage } from "@/pages/DashboardPage"
+import { CustomerDashboard } from "@/pages/CustomerDashboard"
 import { BidsPage } from "@/pages/BidsPage"
 import { SubsPage } from "@/pages/SubsPage"
 import { JobsPage } from "@/pages/JobsPage"
@@ -43,7 +43,7 @@ function App() {
                 </ProtectedRoute>
               }
             >
-              <Route index element={<DashboardPage />} />
+              <Route index element={<CustomerDashboard />} />
               <Route path="bids" element={<BidsPage />} />
               <Route path="bids/new" element={<BidForm />} />
               <Route path="bids/:id" element={<BidPreview />} />
