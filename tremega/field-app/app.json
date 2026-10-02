@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Tremega",
+    "slug": "field-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "tremega",
+    "ios": {
+      "bundleIdentifier": "com.tremega.fieldworker",
+      "buildNumber": "1",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Tremega uses your location to verify job-site check-ins and show distances to crew."
+      }
+    },
+    "android": {
+      "package": "com.tremega.fieldworker",
+      "versionCode": 1,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "POST_NOTIFICATIONS"
+      ],
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Tremega uses your location to verify job-site check-ins and show distances to crew."
+        }
+      ]
+    ],
+    "extra": {
+      "apiUrl": "https://tremega-backend-production-d2e5.up.railway.app"
+    }
+  }
+}
