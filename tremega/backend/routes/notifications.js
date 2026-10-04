@@ -7,8 +7,9 @@ const router = express.Router();
 router.use(authMiddleware);
 
 // GET /api/notifications - Get all notifications for logged-in user
+// (businessId optional/ignored: live table has no business_id column; scoping is user_id only)
 router.get('/', [
-  query('businessId').isUUID().withMessage('Valid business ID required'),
+  query('businessId').optional().isUUID(),
   query('read').optional().isBoolean(),
 ], async (req, res) => {
   try {
@@ -17,18 +18,20 @@ router.get('/', [
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { businessId, read } = req.query;
+    const { read } = req.query;
     const userId = req.user.userId;
 
+    // Schema fix: the LIVE notifications table has no business_id column
+    // (cols: user_id, type, title, message, is_read, related_type, related_id).
+    // Scope by the caller only.
     let query = supabase
       .from('notifications')
       .select('*')
       .eq('user_id', userId)
-      .eq('business_id', businessId)
       .order('created_at', { ascending: false });
 
     if (read !== undefined) {
-      query = query.eq('read', read === 'true');
+      query = query.eq('is_read', read === 'true');
     }
 
     const { data: notifications, error } = await query;
@@ -40,8 +43,7 @@ router.get('/', [
       .from('notifications')
       .select('*', { count: 'exact', head: true })
       .eq('user_id', userId)
-      .eq('business_id', businessId)
-      .eq('read', false);
+      .eq('is_read', false);
 
     res.json({
       notifications,
@@ -82,24 +84,16 @@ router.put('/:id/read', async (req, res) => {
 });
 
 // PUT /api/notifications/mark-all-read - Mark all as read
-router.put('/mark-all-read', [
-  query('businessId').isUUID().withMessage('Valid business ID required'),
-], async (req, res) => {
+// (businessId param dropped: live table has no business_id column)
+router.put('/mark-all-read', [], async (req, res) => {
   try {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
-    const { businessId } = req.query;
     const userId = req.user.userId;
 
     const { error } = await supabase
       .from('notifications')
-      .update({ read: true })
+      .update({ is_read: true })
       .eq('user_id', userId)
-      .eq('business_id', businessId)
-      .eq('read', false);
+      .eq('is_read', false);
 
     if (error) throw error;
 
