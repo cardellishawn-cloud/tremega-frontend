@@ -110,6 +110,7 @@ router.post('/', roleMiddleware(['admin', 'contractor']), inviteValidation, asyn
 router.get('/', async (req, res) => {
   try {
     const { userId, role } = req.user;
+    console.log('[GET /api/subs] Request from user:', userId, 'role:', role);
 
     if (role === 'admin' || role === 'contractor') {
       // Admin and contractor see all subs
@@ -118,6 +119,8 @@ router.get('/', async (req, res) => {
         .select('*');
 
       if (error) throw error;
+      console.log('[GET /api/subs] Returning subs for admin/contractor:', subs?.length, 'subs');
+      console.log('[GET /api/subs] Sub IDs:', subs?.map(s => ({ id: s.id, name: s.name })));
       return res.json(subs);
     } else if (role === 'sub') {
       // Sub sees only their own profile
@@ -127,6 +130,7 @@ router.get('/', async (req, res) => {
         .eq('id', userId);
 
       if (error) throw error;
+      console.log('[GET /api/subs] Returning subs for sub:', subs?.length, 'subs');
       return res.json(subs);
     } else {
       // Client sees subs assigned to their jobs
@@ -137,6 +141,7 @@ router.get('/', async (req, res) => {
 
       const subIds = [...new Set((assignments || []).map(a => a.sub_user_id))];
       if (subIds.length === 0) {
+        console.log('[GET /api/subs] No sub assignments found for client');
         return res.json([]);
       }
 
@@ -146,6 +151,7 @@ router.get('/', async (req, res) => {
         .in('id', subIds);
 
       if (error) throw error;
+      console.log('[GET /api/subs] Returning subs for client:', subs?.length, 'subs');
       return res.json(subs);
     }
   } catch (error) {

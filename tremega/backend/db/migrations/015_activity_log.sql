@@ -15,5 +15,9 @@ CREATE TABLE IF NOT EXISTS activity_log (
 CREATE INDEX IF NOT EXISTS idx_activity_log_project ON activity_log(project_id);
 CREATE INDEX IF NOT EXISTS idx_activity_log_member  ON activity_log(crew_member_id);
 
+-- Block access through Supabase's public API. The backend uses the service key,
+-- which bypasses row-level security, so it is unaffected.
+ALTER TABLE activity_log ENABLE ROW LEVEL SECURITY;
+
 -- ---------- UNDO ----------
 -- DROP TABLE IF EXISTS activity_log;
